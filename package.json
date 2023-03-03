@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-express-on-aws-ec2-ci-cd",
+  "version": "1.0.0",
+  "description": " nodejs ci cd integration app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newmohib/nodejs-express-on-aws-ec2-ci-cd.git"
+  },
+  "author": "mohib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newmohib/nodejs-express-on-aws-ec2-ci-cd/issues"
+  },
+  "homepage": "https://github.com/newmohib/nodejs-express-on-aws-ec2-ci-cd#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
