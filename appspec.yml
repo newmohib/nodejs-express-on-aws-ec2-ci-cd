@@ -1,10 +1,10 @@
 version: 0.0
 os: linux
-files: 
+files:
   - source: /
-   distinations: /home/ubuntu/apps/express-app-ci-cd
+    destination: /home/ubuntu/express-app
 hooks:
-  ApplictionStop:
+  ApplicationStop:
     - location: scripts/application_stop.sh
       timeout: 300
       runas: ubuntu

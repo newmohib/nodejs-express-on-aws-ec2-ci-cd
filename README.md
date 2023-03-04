@@ -29,14 +29,27 @@
         b: copy & past bellow code as EC2 script
 ## EC2 script on creation to install the CodeDeploy Agent:
 
-    #!/bin/bash
-    sudo yum -y update
-    sudo yum -y install ruby
-    sudo yum -y install wget
-    cd /home/ec2-user
-    wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
-    sudo chmod +x ./install
-    sudo ./install auto
+    AWS Linux
+        #!/bin/bash
+        sudo yum -y update
+        sudo yum -y install ruby
+        sudo yum -y install wget
+        cd /home/ec2-user
+        wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+        sudo chmod +x ./install
+        sudo ./install auto
+
+    for ubuntu
+
+        #!/bin/bash
+        sudo apt update
+        sudo apt install ruby-full
+        sudo apt install wget
+        cd /home/ubuntu
+        wget https://bucket-name.s3.region-identifier.amazonaws.com/latest/install
+        sudo chmod +x ./install
+        sudo ./install auto
+
 
 ## CodeDeploy
 
@@ -87,6 +100,50 @@
         16: view all config => create pipeline => done
 
 
+https://www.youtube.com/watch?v=Buh3GjHPmjo
+
+appspec.yml file for aws linux
+
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/express-app
+hooks:
+  ApplicationStop:
+    - location: scripts/application_stop.sh
+      timeout: 300
+      runas: ec2-user
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 300
+      runas: ec2-user
+
+
+for ubuntu
+
+    version: 0.0
+os: linux
+files: 
+  - source: /
+   distinations: /home/ubuntu/apps/express-app-ci-cd
+hooks:
+  ApplictionStop:
+    - location: scripts/application_stop.sh
+      timeout: 300
+      runas: ubuntu
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 300
+      runas: ubuntu
 
 
 
